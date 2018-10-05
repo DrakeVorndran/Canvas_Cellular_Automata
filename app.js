@@ -9,14 +9,13 @@ const grid_width = width/px_width;
 let time = 0;
 let ctx = canvas.getContext("2d");
 let grid = new Array(grid_height);
-let states = 3;
-let colors = ["white","black","blue"];
+let states = 2;
+let colors = ["white","black"];
 let wraping = true;
 let running = true;
 let rules = {
-    0:[{change_to: 2, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
-    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}],
-    2:[{change_to: 1, conditions: {1:[3]}},{change_to: 0, conditions:{1:[2], 2:[1]}}]
+    0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
+    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
 }
 //grid.fill(new Array(grid_width))
 for(var i = 0; i<grid.length; i++){
@@ -144,7 +143,7 @@ draw = function(){
     for(var y = 0; y<grid.length; y++){
         for(var x = 0; x < grid[y].length; x++){
             ctx.fillStyle = colors[grid[y][x]];
-            ctx.fillRect(x*px_width,y*px_height,4,4);
+            ctx.fillRect(x*px_width,y*px_height,px_height,px_width);
             //            ctx.fillRect(x*px_width,y*px_height,px_width,px_height);
         }
     }
@@ -173,7 +172,7 @@ make_glider = function(){
     grid[8][7] = 1;
     grid[7][8] = 1;
 }
-//grid[20][20] = 2;
+//grid[20][20] = 3;
 //console.log(grid);
 make_glider();
 //grid[5][5] = 1;
