@@ -9,13 +9,13 @@ const grid_width = width/px_width;
 let time = 0;
 let ctx = canvas.getContext("2d");
 let grid = new Array(grid_height);
-let states = 2;
-let colors = ["#ffffff","#000000",];
+let states = 3;
+let colors = ["white","black"];
 let wraping = true;
 let running = true;
 let rules = {
     0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
-    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
+    1:[{change_to: 0, conditions: {1:[1,4,5,6,7,8], 0:[8], 2:[8]}}]
 }
 //grid.fill(new Array(grid_width))
 for(var i = 0; i<grid.length; i++){
@@ -127,6 +127,7 @@ checker = function(x,y){
 //    if(grid[y][x]==1){
 //        console.log(x,y,neighbors,allchecked);
 //    }
+
     return neighbors;
 }
 
@@ -144,9 +145,9 @@ draw = function(){
 
 run = function(){
     update();
-//    grid[5][9] = 1;
-//    grid[6][9] = 1;
-//    grid[7][9] = 1;
+    //    grid[5][9] = 1;
+    //    grid[6][9] = 1;
+    //    grid[7][9] = 1;
     draw();
     //    console.log(grid[6][6])
     //    console.log(grid[0]);
@@ -157,11 +158,15 @@ run = function(){
 }
 
 //draw_checkerboard()
-grid[6][6] = 1;
-grid[7][6] = 1;
-grid[8][6] = 1;
-grid[8][7] = 1;
-grid[7][8] = 1;
+make_glider = function(){
+    grid[6][6] = 1;
+    grid[7][6] = 1;
+    grid[8][6] = 1;
+    grid[8][7] = 1;
+    grid[7][8] = 1;
+}
 //grid[20][20] = 2;
 //console.log(grid);
-run()
+make_glider();
+//grid[5][5] = 1;
+run();
