@@ -10,12 +10,13 @@ let time = 0;
 let ctx = canvas.getContext("2d");
 let grid = new Array(grid_height);
 let states = 3;
-let colors = ["white","black"];
+let colors = ["white","black","blue"];
 let wraping = true;
 let running = true;
 let rules = {
-    0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
-    1:[{change_to: 0, conditions: {1:[1,4,5,6,7,8], 0:[8], 2:[8]}}]
+    0:[{change_to: 2, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
+    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}],
+    2:[{change_to: 1, conditions: {1:[3]}},{change_to: 0, conditions:{1:[2], 2:[1]}}]
 }
 //grid.fill(new Array(grid_width))
 for(var i = 0; i<grid.length; i++){
@@ -52,15 +53,17 @@ update = function(){
             //            if(grid[y][x]===1){
             //                console.log(neighbors);
             //            }
-            let rule = rules[grid[y][x]][0];
-            for(var check in neighbors){
-                if(check in rule.conditions){
-                    condition = rule.conditions[check];
-                    if(condition.includes(neighbors[check])){
-                        changes.push([x,y,rule.change_to]);
+            for(var i = 0; i<rules[grid[y][x]].length; i++){
+                let rule = rules[grid[y][x]][i];
+                for(var check in neighbors){
+                    if(check in rule.conditions){
+                        condition = rule.conditions[check];
+                        if(condition.includes(neighbors[check])){
+                            changes.push([x,y,rule.change_to]);
+                        }
                     }
-                }
 
+                }
             }
         }
 
@@ -75,9 +78,14 @@ update = function(){
 
 checker = function(x,y){
     let neighbors = {};
+
+    for( var i = 0; i<states; i++) {
+        neighbors[i] = 0;
+    }
     let checkposX = [x];
     let checkposY = [y];
     let allchecked = [];
+
     if(wraping){ //finding all the neighbors
         checkposX.push((x+1)%grid_width); 
         checkposY.push((y+1)%grid_height);
@@ -124,9 +132,9 @@ checker = function(x,y){
         }
 
     }
-//    if(grid[y][x]==1){
-//        console.log(x,y,neighbors,allchecked);
-//    }
+    //    if(grid[y][x]==1){
+    //        console.log(x,y,neighbors,allchecked);
+    //    }
 
     return neighbors;
 }
