@@ -6,10 +6,22 @@
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <canvas id="canvas" width="400px" height="400px"></canvas>
-        <button onclick="make_glider()">click to make glider</button>
-        
-        
+        <div id="container">
+            <div id="game">
+                <canvas id="canvas" width="550px" height="400px"></canvas>
+            </div>
+
+            <div id="menu">
+                <button onclick="make_glider()">glider</button>
+                
+                <button onclick="reset(); play();">Restart Sim</button>
+                
+                <button id="pause-button" onclick="pause()">Pause</button>
+                
+                <button onclick="randomize()">Randomize</button>
+            </div>
+
+        </div>
         <script src="app.js"></script>
     </body>
 </html>

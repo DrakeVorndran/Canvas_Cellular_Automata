@@ -1,27 +1,42 @@
 const canvas = document.getElementById('canvas');
-const height = 400;
-const width = 400;
+const height = canvas.height;
+console.log(height);
+const width = canvas.width;
+console.log(width);
 const size = 100;
 const px_height =  height/size;
-const px_width = width/size;
+const px_width = parseInt(width/size*(height/width));
+//console.log(px_width)
 const grid_height = height/px_height;
-const grid_width = width/px_width;
-let time = 0;
-let ctx = canvas.getContext("2d");
-let grid = new Array(grid_height);
-let states = 2;
-let colors = ["white","black"];
-let wraping = true;
-let running = true;
-let rules = {
-    0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
-    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
-}
-//grid.fill(new Array(grid_width))
-for(var i = 0; i<grid.length; i++){
-    grid[i] = new Array(grid_width);
-    grid[i].fill(0);
-    //    console.log(i);
+const grid_width = parseInt(width/px_width);
+//console.log(grid_width);
+let time;
+let ctx;
+let grid;
+let states;
+let colors;
+let wraping;
+let running;
+let rules;
+reset = function(){
+    time = 0;
+    ctx = canvas.getContext("2d");
+    grid = new Array(grid_height);
+    states = 2;
+    colors = ["white","black","blue"];
+    wraping = true;
+    running = true;
+    rules = {
+        0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
+        1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
+    }
+
+    //grid.fill(new Array(grid_width))
+    for(var i = 0; i<grid.length; i++){
+        grid[i] = new Array(grid_width);
+        grid[i].fill(0);
+        //    console.log(i);
+    }
 }
 //console.log(grid);
 
@@ -121,12 +136,7 @@ checker = function(x,y){
         //        console.log(checkposX,checkposY)
         for(var j = 0; j < checkposX.length; j++){
             if((j!=0 || i!=0)){
-                if(grid[checkposY[i]][checkposX[j]] in neighbors){
-                    neighbors[grid[checkposY[i]][checkposX[j]]]++;
-                }
-                else{
-                    neighbors[grid[checkposY[i]][checkposX[j]]] = 1;
-                }
+                neighbors[grid[checkposY[i]][checkposX[j]]]++;
             }
         }
 
@@ -149,6 +159,31 @@ draw = function(){
     }
 }
 
+randomize = function(){
+    for(var y in grid){
+        for(var x in grid[y]){
+//            console.log(parseInt(Math.random()*states));
+            grid[y][x] = parseInt(Math.random()*states);
+        }
+    }
+}
+
+
+pause = function(){
+    running = false
+    button = document.getElementById("pause-button");
+    button.setAttribute("onclick","play();");
+    button.innerHTML="Play";
+}
+
+play = function(){
+    running = true;
+    button = document.getElementById("pause-button");
+    button.setAttribute("onclick","pause();");
+    button.innerHTML="Pause";
+
+    run();
+}
 
 run = function(){
     update();
@@ -174,6 +209,7 @@ make_glider = function(){
 }
 //grid[20][20] = 3;
 //console.log(grid);
-make_glider();
+//make_glider();
 //grid[5][5] = 1;
+reset()
 run();
