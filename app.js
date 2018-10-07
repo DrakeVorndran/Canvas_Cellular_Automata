@@ -6,7 +6,7 @@ boardO.init = function(height, width){
     this.height = height;
     this.width = width;
 //    console.log(width,t);
-    this.size = 100;
+    this.size = 20;
     this.px_height =  this.height/this.size;
     this.px_width = parseInt(this.width/this.size*(this.height/this.width));
     //console.log(px_width)

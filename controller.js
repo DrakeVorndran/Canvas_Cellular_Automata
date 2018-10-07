@@ -25,6 +25,13 @@ canvas.addEventListener("mousemove",function(evt){
     }
 
 });
+canvas.addEventListener("mousedown",function(evt){
+    console.log("clicked")
+    var mousePos = getMousePos(canvas, evt);
+    if(boardO.editible){
+        boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)] = (boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)]+1) % boardO.states;
+    }
+});
 
 
 run = function(){
