@@ -19,14 +19,14 @@ canvas.addEventListener("mousemove",function(evt){
     var mousePos = getMousePos(canvas, evt);
     if(boardO.editible){
         ctx.fillStyle = "grey";
-        ctx.fillRect(parseInt(mousePos.x/boardO.px_width)*boardO.px_width,parseInt(mousePos.y/boardO.px_height)*boardO.px_height,boardO.px_width,boardO.px_height);
+        ctx.fillRect(parseInt((mousePos.x-3)/boardO.px_width)*boardO.px_width,parseInt((mousePos.y-3)/boardO.px_height)*boardO.px_height,boardO.px_width,boardO.px_height);
     }
 
 });
 canvas.addEventListener("mousedown",function(evt){
     var mousePos = getMousePos(canvas, evt);
     if(boardO.editible){
-        boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)] = (boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)]+1) % boardO.states;
+        boardO.grid[parseInt((mousePos.y-3)/boardO.px_height)][parseInt((mousePos.x-3)/boardO.px_width)] = (boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)]+1) % boardO.states;
     }
 });
 
