@@ -6,7 +6,7 @@ boardO.init = function(height, width){
     this.height = height;
     this.width = width;
 //    console.log(width,t);
-    this.size = 20;
+    this.size = 100;
     this.px_height =  this.height/this.size;
     this.px_width = parseInt(this.width/this.size*(this.height/this.width));
     //console.log(px_width)
@@ -25,6 +25,7 @@ boardO.init = function(height, width){
 }
 
 boardO.reset = function(){
+    this.init(this.height,this.width);
     this.time = 0;
 //    this.ctx = this.canvas.getContext("2d");
     this.grid = new Array(this.grid_height);
@@ -179,6 +180,8 @@ boardO.randomize = function(){
 
 
 boardO.pause = function(){
+    this.oldtime = this.time;
+    this.time = 0;
     this.running = false;
     this.editible = true;
     button = document.getElementById("pause-button");
@@ -187,6 +190,7 @@ boardO.pause = function(){
 }
 
 boardO.play = function(){
+    this.time=this.oldtime;
     this.running = true;
     this.editible = false;
     button = document.getElementById("pause-button");

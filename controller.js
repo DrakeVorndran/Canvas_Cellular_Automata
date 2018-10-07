@@ -17,8 +17,6 @@ ctx = canvas.getContext("2d");
 
 canvas.addEventListener("mousemove",function(evt){
     var mousePos = getMousePos(canvas, evt);
-    document.getElementById("x").innerHTML = mousePos.x;
-    document.getElementById("y").innerHTML = mousePos.y;
     if(boardO.editible){
         ctx.fillStyle = "grey";
         ctx.fillRect(parseInt(mousePos.x/boardO.px_width)*boardO.px_width,parseInt(mousePos.y/boardO.px_height)*boardO.px_height,boardO.px_width,boardO.px_height);
@@ -26,7 +24,6 @@ canvas.addEventListener("mousemove",function(evt){
 
 });
 canvas.addEventListener("mousedown",function(evt){
-    console.log("clicked")
     var mousePos = getMousePos(canvas, evt);
     if(boardO.editible){
         boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)] = (boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)]+1) % boardO.states;
