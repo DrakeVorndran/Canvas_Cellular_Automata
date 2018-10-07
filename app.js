@@ -1,40 +1,48 @@
-const canvas = document.getElementById('canvas');
-const height = canvas.height;
-console.log(height);
-const width = canvas.width;
-console.log(width);
-const size = 100;
-const px_height =  height/size;
-const px_width = parseInt(width/size*(height/width));
-//console.log(px_width)
-const grid_height = height/px_height;
-const grid_width = parseInt(width/px_width);
-//console.log(grid_width);
-let time;
-let ctx;
-let grid;
-let states;
-let colors;
-let wraping;
-let running;
-let rules;
-reset = function(){
-    time = 0;
-    ctx = canvas.getContext("2d");
-    grid = new Array(grid_height);
-    states = 2;
-    colors = ["white","black","blue"];
-    wraping = true;
-    running = true;
-    rules = {
+var boardO = boardO || {};
+
+
+boardO.init = function(height, width){
+//    this.canvas = document.getElementById('canvas');
+    this.height = height;
+    this.width = width;
+//    console.log(width,t);
+    this.size = 100;
+    this.px_height =  this.height/this.size;
+    this.px_width = parseInt(this.width/this.size*(this.height/this.width));
+    //console.log(px_width)
+    this.grid_height = this.height/this.px_height;
+    this.grid_width = parseInt(this.width/this.px_width);
+    //console.log(grid_width);
+    this.time;
+//    this.ctx;
+    this.grid;
+    this.states;
+    this.colors;
+    this.wraping;
+    this.running;
+    this.rules;
+    this.editible = false;
+}
+
+boardO.reset = function(){
+    this.time = 0;
+//    this.ctx = this.canvas.getContext("2d");
+    this.grid = new Array(this.grid_height);
+    this.states = 2;
+    this.colors = ["white","black","blue"];
+    this.wraping = true;
+    this.running = true;
+    this.editible = false;
+    
+    this.rules = {
         0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
         1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
     }
 
     //grid.fill(new Array(grid_width))
-    for(var i = 0; i<grid.length; i++){
-        grid[i] = new Array(grid_width);
-        grid[i].fill(0);
+    for(var i = 0; i<this.grid.length; i++){
+        this.grid[i] = new Array(this.grid_width);
+        this.grid[i].fill(0);
         //    console.log(i);
     }
 }
@@ -48,27 +56,27 @@ reset = function(){
 
 
 
-draw_checkerboard = function(){
-    for(var y = 0; y<grid.length; y++){
-        for(var x = 0; x < grid[y].length; x++){
+boardO.draw_checkerboard = function(){
+    for(var y = 0; y<this.grid.length; y++){
+        for(var x = 0; x < this.grid[y].length; x++){
             //            console.log(y+x)
             if((x+y)%2===0){
-                grid[y][x] = 1;
+                this.grid[y][x] = 1;
             }
         }
     }
 }
 
-update = function(){
+boardO.step = function(){
     let changes = []
-    for(var y = 0; y<grid.length; y++){
-        for(var x = 0; x < grid[y].length; x++){
-            let neighbors = checker(x,y);
+    for(var y = 0; y<this.grid.length; y++){
+        for(var x = 0; x < this.grid[y].length; x++){
+            let neighbors = this.checker(x,y);
             //            if(grid[y][x]===1){
             //                console.log(neighbors);
             //            }
-            for(var i = 0; i<rules[grid[y][x]].length; i++){
-                let rule = rules[grid[y][x]][i];
+            for(var i = 0; i<this.rules[this.grid[y][x]].length; i++){
+                let rule = this.rules[this.grid[y][x]][i];
                 for(var check in neighbors){
                     if(check in rule.conditions){
                         condition = rule.conditions[check];
@@ -84,33 +92,33 @@ update = function(){
     }
     for(var i in changes){
         //        console.log(i);
-        grid[changes[i][1]][changes[i][0]] = changes[i][2];
+        this.grid[changes[i][1]][changes[i][0]] = changes[i][2];
     }
 }
 
 
 
-checker = function(x,y){
+boardO.checker = function(x,y){
     let neighbors = {};
 
-    for( var i = 0; i<states; i++) {
+    for( var i = 0; i<this.states; i++) {
         neighbors[i] = 0;
     }
     let checkposX = [x];
     let checkposY = [y];
     let allchecked = [];
 
-    if(wraping){ //finding all the neighbors
-        checkposX.push((x+1)%grid_width); 
-        checkposY.push((y+1)%grid_height);
+    if(this.wraping){ //finding all the neighbors
+        checkposX.push((x+1)%this.grid_width); 
+        checkposY.push((y+1)%this.grid_height);
         if(x===0){
-            checkposX.push(grid_width-1);
+            checkposX.push(this.grid_width-1);
         }
         else{
             checkposX.push(x-1);
         }
         if(y===0){
-            checkposY.push(grid_height-1);
+            checkposY.push(this.grid_height-1);
         }
         else{
             checkposY.push(y-1);
@@ -124,10 +132,10 @@ checker = function(x,y){
         if(y!=0){
             checkposY.push(y-1);
         }
-        if(x!=grid_width-1){
+        if(x!=this.grid_width-1){
             checkposX.push(x+1)
         }
-        if(y!=grid_height-1){
+        if(y!=this.grid_height-1){
             checkposY.push(y+1)
         }
     }
@@ -136,7 +144,7 @@ checker = function(x,y){
         //        console.log(checkposX,checkposY)
         for(var j = 0; j < checkposX.length; j++){
             if((j!=0 || i!=0)){
-                neighbors[grid[checkposY[i]][checkposX[j]]]++;
+                neighbors[this.grid[checkposY[i]][checkposX[j]]]++;
             }
         }
 
@@ -149,67 +157,60 @@ checker = function(x,y){
 }
 
 
-draw = function(){
-    for(var y = 0; y<grid.length; y++){
-        for(var x = 0; x < grid[y].length; x++){
-            ctx.fillStyle = colors[grid[y][x]];
-            ctx.fillRect(x*px_width,y*px_height,px_height,px_width);
+boardO.draw = function(){
+//        console.log("I drew")
+    for(var y = 0; y<this.grid.length; y++){
+        for(var x = 0; x < this.grid[y].length; x++){
+            this.ctx.fillStyle = this.colors[this.grid[y][x]];
+            this.ctx.fillRect(x*this.px_width,y*this.px_height,this.px_height,this.px_width);
             //            ctx.fillRect(x*px_width,y*px_height,px_width,px_height);
         }
     }
 }
 
-randomize = function(){
-    for(var y in grid){
-        for(var x in grid[y]){
-//            console.log(parseInt(Math.random()*states));
-            grid[y][x] = parseInt(Math.random()*states);
+boardO.randomize = function(){
+    for(var y in this.grid){
+        for(var x in this.grid[y]){
+            //            console.log(parseInt(Math.random()*states));
+            this.grid[y][x] = parseInt(Math.random()*this.states);
         }
     }
 }
 
 
-pause = function(){
-    running = false
+boardO.pause = function(){
+    this.running = false;
+    this.editible = true;
     button = document.getElementById("pause-button");
-    button.setAttribute("onclick","play();");
+    button.setAttribute("onclick","boardO.play();");
     button.innerHTML="Play";
 }
 
-play = function(){
-    running = true;
+boardO.play = function(){
+    this.running = true;
+    this.editible = false;
     button = document.getElementById("pause-button");
-    button.setAttribute("onclick","pause();");
+    button.setAttribute("onclick","boardO.pause();");
     button.innerHTML="Pause";
 
-    run();
+//    this.run();
 }
 
-run = function(){
-    update();
-    //    grid[5][9] = 1;
-    //    grid[6][9] = 1;
-    //    grid[7][9] = 1;
-    draw();
-    //    console.log(grid[6][6])
-    //    console.log(grid[0]);
-    //    running = true;
-    if(running){
-        window.setTimeout(run,time);
-    }
-}
+
+
+
 
 //draw_checkerboard()
-make_glider = function(){
-    grid[6][6] = 1;
-    grid[7][6] = 1;
-    grid[8][6] = 1;
-    grid[8][7] = 1;
-    grid[7][8] = 1;
+boardO.make_glider = function(){
+    this.grid[6][6] = 1;
+    this.grid[7][6] = 1;
+    this.grid[8][6] = 1;
+    this.grid[8][7] = 1;
+    this.grid[7][8] = 1;
 }
 //grid[20][20] = 3;
 //console.log(grid);
 //make_glider();
 //grid[5][5] = 1;
-reset()
-run();
+
+

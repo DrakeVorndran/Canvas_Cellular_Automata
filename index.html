@@ -12,16 +12,19 @@
             </div>
 
             <div id="menu">
-                <button onclick="make_glider()">glider</button>
+                <button onclick="boardO.make_glider()">glider</button>
                 
-                <button onclick="reset(); play();">Restart Sim</button>
+                <button onclick="boardO.reset(); boardO.play();">Restart Sim</button>
                 
-                <button id="pause-button" onclick="pause()">Pause</button>
+                <button id="pause-button" onclick="boardO.pause()">Pause</button>
                 
-                <button onclick="randomize()">Randomize</button>
+                <button onclick="boardO.randomize()">Randomize</button>
+                <p id="x">x</p>
+                <p id="y">y</p>
             </div>
 
         </div>
         <script src="app.js"></script>
+        <script src="controller.js"></script>
     </body>
 </html>
