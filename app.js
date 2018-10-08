@@ -1,12 +1,12 @@
 var boardO = boardO || {};
 
 
-boardO.init = function(height, width){
-//    this.canvas = document.getElementById('canvas');
+boardO.init = function(height, width,size){
+    //    this.canvas = document.getElementById('canvas');
     this.height = height;
     this.width = width;
-//    console.log(width,t);
-    this.size = 100;
+    //    console.log(width,t);
+    this.size = size;
     this.px_height =  this.height/this.size;
     this.px_width = parseInt(this.width/this.size*(this.height/this.width));
     //console.log(px_width)
@@ -14,7 +14,7 @@ boardO.init = function(height, width){
     this.grid_width = parseInt(this.width/this.px_width);
     //console.log(grid_width);
     this.time;
-//    this.ctx;
+    //    this.ctx;
     this.grid;
     this.states;
     this.colors;
@@ -24,17 +24,21 @@ boardO.init = function(height, width){
     this.editible = false;
 }
 
-boardO.reset = function(){
-    this.init(this.height,this.width);
+boardO.reset = function(size){
+    this.running = false;
+    this.init(this.height,this.width,size);
+    this.running = true;
     this.time = 0;
-//    this.ctx = this.canvas.getContext("2d");
+    //    this.ctx = this.canvas.getContext("2d");
     this.grid = new Array(this.grid_height);
+//    if(this.oldBoard.s)
+    this.oldBoard = this.oldBoard || this.grid;
     this.states = 2;
     this.colors = ["white","black","blue"];
     this.wraping = true;
     this.running = true;
     this.editible = false;
-    
+
     this.rules = {
         0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
         1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
@@ -91,6 +95,7 @@ boardO.step = function(){
         }
 
     }
+    this.oldBoard = JSON.parse(JSON.stringify(this.grid));
     for(var i in changes){
         //        console.log(i);
         this.grid[changes[i][1]][changes[i][0]] = changes[i][2];
@@ -158,16 +163,6 @@ boardO.checker = function(x,y){
 }
 
 
-boardO.draw = function(){
-//        console.log("I drew")
-    for(var y = 0; y<this.grid.length; y++){
-        for(var x = 0; x < this.grid[y].length; x++){
-            this.ctx.fillStyle = this.colors[this.grid[y][x]];
-            this.ctx.fillRect(x*this.px_width,y*this.px_height,this.px_height,this.px_width);
-            //            ctx.fillRect(x*px_width,y*px_height,px_width,px_height);
-        }
-    }
-}
 
 boardO.randomize = function(){
     for(var y in this.grid){
@@ -197,7 +192,7 @@ boardO.play = function(){
     button.setAttribute("onclick","boardO.pause();");
     button.innerHTML="Pause";
 
-//    this.run();
+    //    this.run();
 }
 
 

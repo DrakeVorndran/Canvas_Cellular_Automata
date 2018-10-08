@@ -1,53 +1,57 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Canvas Cellular Automata</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-        <div id="container">
-            <div id="game">
-                <canvas id="canvas" width="550px" height="400px"></canvas>
-            </div>
+<html lang="en">
 
-            <div id="menu">
-                <button onclick="boardO.make_glider()">glider</button>
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas Cellular Automata</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
 
-                <button onclick="boardO.reset(); boardO.play();">Restart Sim</button>
+<body>
+    <div id="container">
+        <div id="game">
+            <canvas id="canvas" width="550" height="400"></canvas>
+        </div>
 
-                <button id="pause-button" onclick="boardO.pause()">Pause</button>
+        <div id="menu">
+            <button onclick="boardO.make_glider()">glider</button>
 
-                <button onclick="boardO.randomize()">Randomize</button>
-                <label>Delay:</label>
-                <input type="range" min=0 max="1000" value="0" id="delay-range">
-                <label id="delay-label"></label>
+            <button onclick="boardO.reset(200); run();">Restart Sim</button>
 
-            </div>
-            
-            <div id="rule-creator">
-                <ul>
-                    <li>
-                        <div class="rule" id="0">
-                            <div class="rule-color" style="background:white"> </div>
-                            <label>Change to:</label>
-                            <ul class="cases">
-                                <li class="case">
-                                    <div class="case-color" style="background: black"></div>
+            <button id="pause-button" onclick="boardO.pause()">Pause</button>
 
-                                </li>
-                                
-                                
-                            </ul>
+            <button onclick="boardO.randomize()">Randomize</button>
+            <label>Delay:</label>
+            <input type="range" min=0 max="1000" value="0" id="delay-range">
+            <label id="delay-label"></label>
 
-                        </div>
-                    </li>
-                    
-                    
-                </ul>
+        </div>
+    </div>
 
-            </div>
-            <script src="app.js"></script>
-            <script src="controller.js"></script>
-            </body>
-        </html>
+        <div id="rule-creator">
+            <ul>
+                <li>
+                    <div class="rule" id="0">
+                        <div class="rule-color" style="background:white"> </div>
+                        <label>Change to:</label>
+                        <ul class="cases">
+                            <li class="case">
+                                <div class="case-color" style="background: black"></div>
+
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </li>
+
+
+            </ul>
+
+        </div>
+        <script src="app.js"></script>
+        <script src="controller.js"></script>
+</body>
+
+</html>

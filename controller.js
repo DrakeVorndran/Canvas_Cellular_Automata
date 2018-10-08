@@ -48,15 +48,20 @@ draw = function(){
     //    console.log("I drew")
     for(var y = 0; y<boardO.grid.length; y++){
         for(var x = 0; x < boardO.grid[y].length; x++){
+           if(boardO.oldBoard[y][x]!=boardO.grid[y][x] || !boardO.running){
             ctx.fillStyle = boardO.colors[boardO.grid[y][x]];
             ctx.fillRect(x*boardO.px_width,y*boardO.px_height,boardO.px_height,boardO.px_width);
+           }
             //            ctx.fillRect(x*px_width,y*px_height,px_width,px_height);
         }
     }
 }
 
-boardO.init(canvas.height,canvas.width);
+
+
+
+boardO.init(canvas.height,canvas.width,100);
 boardO.randomize();
 
-boardO.reset();
+boardO.reset(100);
 run();
