@@ -35,8 +35,10 @@ run = function(){
     draw();
     //    boardO.displayMouse();
     if(boardO.running){
+        boardO.time = document.getElementById("delay-range").value;
         boardO.step();
     }
+    document.getElementById("delay-label").innerHTML = document.getElementById("delay-range").value+ " miliseconds"
     window.setTimeout(run, boardO.time);
 
 }
