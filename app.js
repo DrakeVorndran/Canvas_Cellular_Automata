@@ -12,6 +12,7 @@ boardO.init = function(height, width,size){
     //console.log(px_width)
     this.grid_height = this.height/this.px_height;
     this.grid_width = parseInt(this.width/this.px_width);
+    document.getElementById("canvas").width=this.grid_width*this.px_width;
     //console.log(grid_width);
     this.time;
     //    this.ctx;
@@ -24,9 +25,9 @@ boardO.init = function(height, width,size){
     this.editible = false;
 }
 
-boardO.reset = function(size){
+boardO.reset = function(){
     this.running = false;
-    this.init(this.height,this.width,size);
+    this.init(this.height,this.width,document.getElementById("reset-size").value);
     this.running = true;
     this.time = 0;
     //    this.ctx = this.canvas.getContext("2d");
@@ -40,7 +41,7 @@ boardO.reset = function(size){
     this.editible = false;
 
     this.rules = {
-        0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
+        0:[{change_to: 1, conditions: {1:[3,6]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
         1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
     }
 
@@ -49,6 +50,11 @@ boardO.reset = function(size){
         this.grid[i] = new Array(this.grid_width);
         this.grid[i].fill(0);
         //    console.log(i);
+    }
+    if(this.oldBoard.length!=this.size){
+            this.oldBoard = this.grid;
+            this.pause()
+
     }
 }
 //console.log(grid);

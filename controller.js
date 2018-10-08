@@ -1,5 +1,5 @@
 var boardO = boardO || {};
-
+var numRunning = 0;
 getMousePos = function(canvas, evt){
     //massive help from https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
     var rect = canvas.getBoundingClientRect();
@@ -26,20 +26,25 @@ canvas.addEventListener("mousemove",function(evt){
 canvas.addEventListener("mousedown",function(evt){
     var mousePos = getMousePos(canvas, evt);
     if(boardO.editible){
-        boardO.grid[parseInt((mousePos.y-3)/boardO.px_height)][parseInt((mousePos.x-3)/boardO.px_width)] = (boardO.grid[parseInt(mousePos.y/boardO.px_height)][parseInt(mousePos.x/boardO.px_width)]+1) % boardO.states;
+        boardO.grid[parseInt((mousePos.y-3)/boardO.px_height)][parseInt((mousePos.x-3)/boardO.px_width)]++;
+        boardO.grid[parseInt((mousePos.y-3)/boardO.px_height)][parseInt((mousePos.x-3)/boardO.px_width)]%=boardO.states;
     }
 });
 
 
 run = function(){
     draw();
+    numRunning++;
     //    boardO.displayMouse();
     if(boardO.running){
         boardO.time = document.getElementById("delay-range").value;
         boardO.step();
     }
     document.getElementById("delay-label").innerHTML = document.getElementById("delay-range").value+ " miliseconds"
-    window.setTimeout(run, boardO.time);
+    if(numRunning === 1){
+        numRunning--;
+        window.setTimeout(run, boardO.time);
+    }
 
 }
 
@@ -48,10 +53,10 @@ draw = function(){
     //    console.log("I drew")
     for(var y = 0; y<boardO.grid.length; y++){
         for(var x = 0; x < boardO.grid[y].length; x++){
-           if(boardO.oldBoard[y][x]!=boardO.grid[y][x] || !boardO.running){
-            ctx.fillStyle = boardO.colors[boardO.grid[y][x]];
-            ctx.fillRect(x*boardO.px_width,y*boardO.px_height,boardO.px_height,boardO.px_width);
-           }
+            if(boardO.oldBoard[y][x]!=boardO.grid[y][x] || !boardO.running){
+                ctx.fillStyle = boardO.colors[boardO.grid[y][x]];
+                ctx.fillRect(x*boardO.px_width,y*boardO.px_height,boardO.px_height,boardO.px_width);
+            }
             //            ctx.fillRect(x*px_width,y*px_height,px_width,px_height);
         }
     }

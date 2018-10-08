@@ -15,8 +15,11 @@
 
         <div id="menu">
             <button onclick="boardO.make_glider()">glider</button>
-
-            <button onclick="boardO.reset(200); run();">Restart Sim</button>
+            
+            <div>
+            <button onclick="boardO.reset();">Restart Sim</button>
+            <input id="reset-size" type="number" value="100">
+                   </div>
 
             <button id="pause-button" onclick="boardO.pause()">Pause</button>
 
