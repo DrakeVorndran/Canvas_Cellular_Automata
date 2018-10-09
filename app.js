@@ -25,7 +25,7 @@ boardO.init = function(height, width,size){
     this.editible = false;
 }
 
-boardO.reset = function(){
+boardO.reset = function(rules){
     this.running = false;
     this.init(this.height,this.width,document.getElementById("reset-size").value);
     this.running = true;
@@ -40,10 +40,7 @@ boardO.reset = function(){
     this.running = true;
     this.editible = false;
 
-    this.rules = {
-        0:[{change_to: 1, conditions: {1:[3,6]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
-        1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
-    }
+    this.rules = rules;
 
     //grid.fill(new Array(grid_width))
     for(var i = 0; i<this.grid.length; i++){
