@@ -1,9 +1,10 @@
 var boardO = boardO || {};
 var numRunning = 0;
 let globalRules = {
-        0:[{change_to: 1, conditions: {1:[3]}}], //changeto is what it could change to, and can have multiple change rules, conditions is how it changes to that
-        1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}]
-    };
+    0:[{change_to: 1, conditions: {1:[3]}}],
+    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}],
+    length: 2
+};
 getMousePos = function(canvas, evt){
     //massive help from https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
     var rect = canvas.getBoundingClientRect();

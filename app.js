@@ -34,7 +34,7 @@ boardO.reset = function(rules){
     this.grid = new Array(this.grid_height);
 //    if(this.oldBoard.s)
     this.oldBoard = this.oldBoard || this.grid;
-    this.states = 2;
+    this.states = rules.length;
     this.colors = ["white","black","blue"];
     this.wraping = true;
     this.running = true;
