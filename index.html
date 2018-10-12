@@ -1,53 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>Canvas Cellular Automata</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Canvas Cellular Automata</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
 
-<body>
-    <div id="container">
-        <div id="game">
-            <canvas id="canvas" width="550" height="400"></canvas>
+    <body>
+        <div id="container">
+            <div id="game">
+                <canvas id="canvas" width="550" height="400"></canvas>
+            </div>
+
+            <div id="menu">
+                <button onclick="boardO.make_glider()">glider</button>
+
+                <div>
+                    <button onclick="boardO.reset(globalRules);">Restart Sim</button>
+                    <input id="reset-size" type="number" value="100">
+                </div>
+
+                <button id="pause-button" onclick="boardO.pause()">Pause</button>
+
+                <button onclick="boardO.randomize()">Randomize</button>
+                <label>Delay:</label>
+                <input type="range" min=0 max="1000" value="0" id="delay-range">
+                <label id="delay-label"></label>
+
+            </div>
         </div>
-
-        <div id="menu">
-            <button onclick="boardO.make_glider()">glider</button>
-            
-            <div>
-            <button onclick="boardO.reset(globalRules);">Restart Sim</button>
-            <input id="reset-size" type="number" value="100">
-                   </div>
-
-            <button id="pause-button" onclick="boardO.pause()">Pause</button>
-
-            <button onclick="boardO.randomize()">Randomize</button>
-            <label>Delay:</label>
-            <input type="range" min=0 max="1000" value="0" id="delay-range">
-            <label id="delay-label"></label>
-
-        </div>
-    </div>
 
         <div id="rule-creator">
             <ul>
                 <li>
-                    <div class="rule" id="0">
-                        <div class="rule-color" style="background:white"> </div>
-                        <label>Change to:</label>
-                        <ul class="cases">
-                            <li class="case">
-                                <div class="case-color" style="background: black"></div>
+                    <label>cell color: </label>
+                    <div class="rule-color" style="background: white"></div>
+                    <ul class="changes">
+                        <hr>
+                        <li>
+                            <label class="changeto-label">change to: </label>
+                            <div class="changeto-color" style="background: black"></div>
+                            <ul class="conditions">
+                                <li>
+                                    <div class="conditions-color" style="background: black"></div>
+                                    <input type="text", value="3">
+                                </li>
+                                
+                            </ul>
+                        </li>
 
-                            </li>
+                        
+                        
 
-
-                        </ul>
-
-                    </div>
+                    </ul>
                 </li>
+                
+                <li>
+                    <label>cell color: </label>
+                    <div class="rule-color" style="background: Black"></div>
+                    <ul class="changes">
+                        <hr>
+                        <li>
+                            <label class="changeto-label">change to: </label>
+                            <div class="changeto-color" style="background: white"></div>
+                            <ul class="conditions">
+                                <li>
+                                    <div class="conditions-color" style="background: black"></div>
+                                    <input type="text", value="0, 1, 4, 5, 6, 7, 8">
+                                </li>
+                                
+                            </ul>
+                        </li>
+
+                        
+                        
+
+                    </ul>
+                </li>
+                
+                
+                
+                
+                
+
+
 
 
             </ul>
@@ -55,6 +92,6 @@
         </div>
         <script src="app.js"></script>
         <script src="controller.js"></script>
-</body>
+    </body>
 
 </html>
