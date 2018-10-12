@@ -109,17 +109,20 @@
 }
 
 #add-element{
-    display: flex;
     cursor: pointer;
     height: 100%;
     width: 100%;
 /*    text-align: center;*/
-    justify-content: center;
+/*    justify-content: center;*/
     font-size: 10em;
     padding -4px;
+    background: #FFF;
+    border:none;
     
 }
 
 #add-element:hover{
     background: #DDD;
+    height: 100%;
+    width: 100%;
 }
