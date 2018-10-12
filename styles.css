@@ -104,4 +104,22 @@
 */
 }
 
+#rule-creator > ul > li:last-child{
+    padding: 0px;
+}
 
+#add-element{
+    display: flex;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+/*    text-align: center;*/
+    justify-content: center;
+    font-size: 10em;
+    padding -4px;
+    
+}
+
+#add-element:hover{
+    background: #DDD;
+}
