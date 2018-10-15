@@ -44,20 +44,38 @@
                             <label class="changeto-label">change to: </label>
                             <div class="changeto-color" style="background: black"></div>
                             <ul class="conditions">
-                                <li>
+                                <li class="condition">
                                     <div class="conditions-color" style="background: black"></div>
-                                    <p class="selector_text">0 1 2 3 4 5 6 7 8</p>
+
                                     <div class="selector">
-                                        <input type="checkbox" value="0">
-                                        <input type="checkbox" value="1">
-                                        <input type="checkbox" value="2">
-                                        <input type="checkbox" value="3" checked>
-                                        <input type="checkbox" value="4">
-                                        <input type="checkbox" value="5">
-                                        <input type="checkbox" value="6">
-                                        <input type="checkbox" value="7">
-                                        <input type="checkbox" value="8">
-                                        
+                                        <p class="selector_text">0 1 2 3 4 5 6 7 8</p>
+                                        <input type="checkbox" value="0" class="checkbox">
+                                        <input type="checkbox" value="1" class="checkbox">
+                                        <input type="checkbox" value="2" class="checkbox">
+                                        <input type="checkbox" value="3" checked class="checkbox">
+                                        <input type="checkbox" value="4" class="checkbox">
+                                        <input type="checkbox" value="5" class="checkbox">
+                                        <input type="checkbox" value="6" class="checkbox">
+                                        <input type="checkbox" value="7" class="checkbox">
+                                        <input type="checkbox" value="8" class="checkbox">
+
+                                    </div>
+                                </li>
+                                <li></li>
+                                <li class="condition">
+                                    <div class="conditions-color" style="background: white"></div>
+                                    <div class="selector">
+                                        <p class="selector_text">0 1 2 3 4 5 6 7 8</p>
+                                        <input type="checkbox" value="0" class="checkbox">
+                                        <input type="checkbox" value="1" class="checkbox">
+                                        <input type="checkbox" value="2" class="checkbox">
+                                        <input type="checkbox" value="3" class="checkbox">
+                                        <input type="checkbox" value="4" class="checkbox">
+                                        <input type="checkbox" value="5" class="checkbox">
+                                        <input type="checkbox" value="6" class="checkbox">
+                                        <input type="checkbox" value="7" class="checkbox">
+                                        <input type="checkbox" value="8" class="checkbox">
+
                                     </div>
                                 </li>
 
@@ -81,23 +99,41 @@
                             <label class="changeto-label">change to: </label>
                             <div class="changeto-color" style="background: white"></div>
                             <ul class="conditions">
-                                <li>
+                                <li class="condition">
                                     <div class="conditions-color" style="background: black"></div>
                                     <div class="selector">
                                         <p class="selector_text">0 1 2 3 4 5 6 7 8</p>
-                                        <input type="checkbox" value="0" checked>
-                                        <input type="checkbox" value="1" checked>
-                                        <input type="checkbox" value="2">
-                                        <input type="checkbox" value="3">
-                                        <input type="checkbox" value="4" checked>
-                                        <input type="checkbox" value="5" checked>
-                                        <input type="checkbox" value="6" checked>
-                                        <input type="checkbox" value="7" checked>
-                                        <input type="checkbox" value="8" checked>
-                                        
-                                        
+                                        <input type="checkbox" value="0" class="checkbox" checked>
+                                        <input type="checkbox" value="1" class="checkbox" checked>
+                                        <input type="checkbox" value="2" class="checkbox">
+                                        <input type="checkbox" value="3" class="checkbox">
+                                        <input type="checkbox" value="4" class="checkbox" checked>
+                                        <input type="checkbox" value="5" class="checkbox" checked>
+                                        <input type="checkbox" value="6" class="checkbox" checked>
+                                        <input type="checkbox" value="7" class="checkbox" checked>
+                                        <input type="checkbox" value="8" class="checkbox" checked>
+
                                     </div>
                                 </li>
+                                <li>
+                                </li>
+                                <li class="condition">
+                                    <div class="conditions-color" style="background: white"></div>
+                                    <div class="selector">
+                                        <p class="selector_text">0 1 2 3 4 5 6 7 8</p>
+                                        <input type="checkbox" value="0" class="checkbox">
+                                        <input type="checkbox" value="1" class="checkbox">
+                                        <input type="checkbox" value="2" class="checkbox">
+                                        <input type="checkbox" value="3" class="checkbox">
+                                        <input type="checkbox" value="4" class="checkbox">
+                                        <input type="checkbox" value="5" class="checkbox">
+                                        <input type="checkbox" value="6" class="checkbox">
+                                        <input type="checkbox" value="7" class="checkbox">
+                                        <input type="checkbox" value="8" class="checkbox">
+
+                                    </div>
+                                </li>
+
 
                             </ul>
                         </li>
@@ -115,6 +151,7 @@
             </ul>
 
         </div>
+        <button onclick="update_rules()">click me</button>
         <script src="app.js"></script>
         <script src="controller.js"></script>
         <script src="rule_loader.js"></script>

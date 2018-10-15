@@ -41,7 +41,7 @@
 
 #rule-creator > ul{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-gap:10px;
     padding:10px;
 
@@ -138,5 +138,9 @@
 .selector_text{
     margin:0;
     margin-left: 5px;
-    letter-spacing: .3em;
+    letter-spacing: .1em;
+}
+
+.selector > input{
+    margin:0;
 }
