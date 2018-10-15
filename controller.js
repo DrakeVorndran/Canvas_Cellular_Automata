@@ -1,8 +1,8 @@
 var boardO = boardO || {};
 var numRunning = 0;
 let globalRules = {
-    0:[{change_to: 1, conditions: {1:[3]}}],
-    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}}],
+    0:[{change_to:0, conditions:{}},{change_to: 1, conditions: {1:[3]}}],
+    1:[{change_to: 0, conditions: {1:[0,1,4,5,6,7,8]}},{change_to:1,conditions:{}}],
     length: 2
 };
 getMousePos = function(canvas, evt){
