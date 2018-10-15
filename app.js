@@ -43,7 +43,7 @@ boardO.reset = function(rules){
     this.rules = rules;
 
     //grid.fill(new Array(grid_width))
-    for(var i = 0; i<this.grid.length; i++){
+    for(let i = 0; i<this.grid.length; i++){
         this.grid[i] = new Array(this.grid_width);
         this.grid[i].fill(0);
         //    console.log(i);
