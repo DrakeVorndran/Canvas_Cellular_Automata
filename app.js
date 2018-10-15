@@ -48,12 +48,12 @@ boardO.reset = function(rules){
 //    if(this.oldBoard.s)
     this.oldBoard = this.oldBoard || this.grid;
     this.states = rules.length;
-    this.colors = ["white","black","blue"];
     this.wraping = true;
     this.running = true;
     this.editible = false;
 
     this.rules = rules;
+    this.colors = this.rules.colors;
 
     //grid.fill(new Array(grid_width))
     for(let i = 0; i<this.grid.length; i++){

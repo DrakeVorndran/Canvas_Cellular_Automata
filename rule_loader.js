@@ -14,7 +14,7 @@ set_listeners = function(){
                 for(let check_loop = 0; check_loop < checks.length; check_loop++){
                     let check = checks[check_loop];
                     check.onchange = function(e){
-//                        console.log("hi")
+                        //                        console.log("hi")
                         update_rules()
                     }
                 }
@@ -51,7 +51,7 @@ update_rules = function(){
                         my_rule.push(Number(check.value));
                     }
                 }
-//                console.log(i,change_loop,condition_loop,my_rule);
+                //                console.log(i,change_loop,condition_loop,my_rule);
                 globalRules[i][change_loop].conditions[condition_loop] = my_rule;
                 //            globalRules[i][condition_loop].conditions
 
@@ -62,5 +62,13 @@ update_rules = function(){
 }
 
 add_element = function(){
-    console.log("I still need to actually make this");
+    globalRules[globalRules.length] = []
+
+    for(let i = 0; i<globalRules.length; i++){
+        globalRules[i].push({changeto: globalRules.length, conditions:{}});
+        globalRules[globalRules.length].push({change_to:i, conditions:{}});
+    }
+    globalRules[globalRules.length].push({change_to:globalRules.length, conditions:{}});
+
+    globalRules.length++;
 }
