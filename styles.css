@@ -9,15 +9,22 @@
     justify-content: center;
 }
 
+#game{
+    
+}
+
+
 #canvas{
     /*
     height: 400px;
     width: 400px;
     */
     margin: auto;
+    width:90%;
     /*    background: blue;*/
     border: 1px grey solid;
 }
+
 
 
 
@@ -125,4 +132,11 @@
     background: #DDD;
     height: 100%;
     width: 100%;
+}
+
+
+.selector_text{
+    margin:0;
+    margin-left: 5px;
+    letter-spacing: .3em;
 }
