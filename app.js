@@ -1,5 +1,18 @@
 var boardO = boardO || {};
 
+class BoardTHing {
+    constrcutor() {
+        
+        this.height = 0;
+        
+        this.reset();
+    }
+    
+    reset() {
+        
+    }
+}
+
 
 boardO.init = function(height, width,size){
     //    this.canvas = document.getElementById('canvas');

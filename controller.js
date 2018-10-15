@@ -15,9 +15,9 @@ getMousePos = function(canvas, evt){
     }
 }
 
-canvas = document.getElementById("canvas");
+const canvas = document.getElementById("canvas");
 
-ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d");
 
 
 canvas.addEventListener("mousemove",function(evt){
