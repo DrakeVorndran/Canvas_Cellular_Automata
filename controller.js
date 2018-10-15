@@ -69,6 +69,14 @@ draw = function(){
 
 
 
+reset = function(r){
+    boardO.reset(globalRules)
+    ctx.fillStyle = "white"
+    ctx.fillRect(0,0,canvas.width, canvas.height)
+}
+
+
+
 
 boardO.init(canvas.height,canvas.width,100);
 boardO.randomize();

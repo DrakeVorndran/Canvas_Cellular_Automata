@@ -1,17 +1,17 @@
 var boardO = boardO || {};
 
-class BoardTHing {
-    constrcutor() {
-        
-        this.height = 0;
-        
-        this.reset();
-    }
-    
-    reset() {
-        
-    }
-}
+//class BoardTHing {
+//    constrcutor() {
+//        
+//        this.height = 0;
+//        
+//        this.reset();
+//    }
+//    
+//    reset() {
+//        
+//    }
+//}
 
 
 boardO.init = function(height, width,size){
@@ -25,7 +25,7 @@ boardO.init = function(height, width,size){
     //console.log(px_width)
     this.grid_height = this.height/this.px_height;
     this.grid_width = parseInt(this.width/this.px_width);
-    document.getElementById("canvas").width=this.grid_width*this.px_width;
+//    document.getElementById("canvas").width=this.grid_width*this.px_width;
     //console.log(grid_width);
     this.time;
     //    this.ctx;
