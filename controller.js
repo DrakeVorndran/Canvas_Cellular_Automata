@@ -74,4 +74,5 @@ boardO.init(canvas.height,canvas.width,100);
 boardO.randomize();
 
 boardO.reset(globalRules);
+set_listeners()
 run();
