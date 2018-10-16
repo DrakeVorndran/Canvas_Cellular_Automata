@@ -136,15 +136,27 @@ updateHTML = function(){
 
 }
 
+randomColor = function(){
+    str = "#";
+    l = ["1","2","3","4","5","6","7","8","9","0","a","b","c","d","e","f"];
+    for(let x = 0; x < 6; x++){
+        str+=l[parseInt(Math.random()*l.length)];
+    }
+    console.log(str);
+    return str;
+}
+
 add_element = function(){
     globalRules[globalRules.length] = []
-
     for(let i = 0; i<globalRules.length; i++){
         globalRules[i].push({change_to: globalRules.length, conditions:{}});
         globalRules[globalRules.length].push({change_to:i, conditions:{}});
     }
     globalRules[globalRules.length].push({change_to:globalRules.length, conditions:{}});
-
     globalRules.length++;
+    if(globalRules.length > globalRules.colors.length){
+        globalRules.colors.push(randomColor());
+    }
+    
     updateHTML();
 }
