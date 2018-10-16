@@ -3,8 +3,21 @@
 ---
 #### v0:
 * ~make rules changable~
+* ~make rules addable~
+* ~display and run ruleset~
+* ~basic control panel for canvas~
+
+
 
 ---
 #### v1:
 
-* need to 
+* build a better interface for controlling canvas
+* make rules removable
+* cleaner layout/ more css
+
+
+---
+### possibly at some point
+* add directional checking
+* add presets
