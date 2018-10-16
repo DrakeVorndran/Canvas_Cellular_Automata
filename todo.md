@@ -1,7 +1,7 @@
 # todo list
 ### This is where I will store all of the things I need to add/ change
 ---
-#### v0:
+### v0:
 * ~make rules changable~
 * ~make rules addable~
 * ~display and run ruleset~
@@ -10,7 +10,7 @@
 
 
 ---
-#### v1:
+### v1:
 
 * build a better interface for controlling canvas
 * make rules removable
