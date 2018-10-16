@@ -164,10 +164,33 @@ addElement = function(){
 removeElement = function(element){
     for(let ruleLoop = element; ruleLoop<globalRules.length-1; ruleLoop++){
         globalRules[ruleLoop] = globalRules[ruleLoop+1];
+        rule = globalRules[ruleLoop];
     }
     globalRules.length--;
     globalRules.colors.splice(element,1);
     delete globalRules[globalRules.length];
+    for(let ruleLoop = 0; ruleLoop<globalRules.length; ruleLoop++){
+        let rule = globalRules[ruleLoop];
+        //        console.log(rule);
+        for(let conditionLoop = element; conditionLoop<globalRules.length; conditionLoop++){
+            rule[conditionLoop] = rule[conditionLoop+1];
+            rule[conditionLoop].changeTo = conditionLoop;
+        }
+        rule.pop();
+
+    }
+    for(let ruleLoop = 0; ruleLoop<globalRules.length; ruleLoop++){
+        for(let conditionLoop = 0; conditionLoop<globalRules.length; conditionLoop++){
+            condition = globalRules[ruleLoop][conditionLoop];
+            for(let checkLoop = element; checkLoop<globalRules.length; checkLoop++){
+                if(condition.conditions[checkLoop+1] != undefined){
+                condition.conditions[checkLoop] = condition.conditions[checkLoop+1]
+                }
+            }
+            delete condition.conditions[globalRules.length]
+        }
+    }
+//    console.log(globalRules)
 }
 
 
