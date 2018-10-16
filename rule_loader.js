@@ -3,6 +3,7 @@ var boardO = boardO || {};
 set_listeners = function(){
     let elements = document.getElementsByClassName("changes");
     for(let i = 0; i < elements.length; i++){
+//        console.log(elements[i])
         let current = elements[i]
         let changes = current.getElementsByClassName("change");
         for(let change_loop = 0; change_loop < changes.length; change_loop++){
@@ -35,6 +36,7 @@ set_listeners = function(){
 
 update_rules = function(){
     let elements = document.getElementsByClassName("changes");
+//    console.log(elements);
     for(let i = 0; i < elements.length; i++){
         let current = elements[i]
         let changes = current.getElementsByClassName("change");
@@ -49,9 +51,11 @@ update_rules = function(){
                     let check = checks[check_loop];
                     if(check.checked){
                         my_rule.push(Number(check.value));
+//                        console.log(i, change_loop, check_loop, my_rule)
                     }
                 }
                 //                console.log(i,change_loop,condition_loop,my_rule);
+//                console.log(i,change_loop,condition_loop,my_rule)
                 globalRules[i][change_loop].conditions[condition_loop] = my_rule;
                 //            globalRules[i][condition_loop].conditions
 
@@ -72,7 +76,7 @@ updateHTML = function(){
         htmlString += `
 <label>cell color: </label>
 <div class="rule-color" style="background: `+globalRules.colors[rule_loop]+`"></div>
-<ul id="changes">
+<ul class="changes">
 
 `
 
@@ -120,11 +124,15 @@ updateHTML = function(){
 `
 
     }
+    htmlString+=`<li>
+                    <button id="add-element" onclick="add_element()" >+</button>
+                </li>`
     htmlString+=`</ul>
 `             
-    console.log(htmlString)
+//    console.log(htmlString)
     creator = document.getElementById("rule-creator");
     creator.innerHTML = htmlString;
+    set_listeners();
 
 }
 
@@ -132,12 +140,11 @@ add_element = function(){
     globalRules[globalRules.length] = []
 
     for(let i = 0; i<globalRules.length; i++){
-        globalRules[i].push({changeto: globalRules.length, conditions:{}});
+        globalRules[i].push({change_to: globalRules.length, conditions:{}});
         globalRules[globalRules.length].push({change_to:i, conditions:{}});
     }
     globalRules[globalRules.length].push({change_to:globalRules.length, conditions:{}});
 
     globalRules.length++;
     updateHTML();
-    set_listeners()
 }

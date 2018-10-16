@@ -112,6 +112,7 @@ boardO.step = function(){
 
     }
     this.oldBoard = JSON.parse(JSON.stringify(this.grid));
+//    console.log(changes)
     for(var i in changes){
         //        console.log(i);
         this.grid[changes[i][1]][changes[i][0]] = changes[i][2];
