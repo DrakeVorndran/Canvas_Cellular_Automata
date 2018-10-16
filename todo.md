@@ -13,7 +13,7 @@
 ### v1:
 
 * build a better interface for controlling canvas
-* make rules removable
+* ~make rules removable~
 * cleaner layout/ more css
 
 
