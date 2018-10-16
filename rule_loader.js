@@ -1,6 +1,12 @@
 var boardO = boardO || {};
 
 setListeners = function(){
+    let buttons = document.getElementsByClassName("remove");
+    for(let b = 0; b<buttons.length; b++){
+        buttons[b].onclick = function(e){
+            removeElement(b)
+        }
+    }
     let elements = document.getElementsByClassName("changes");
     for(let i = 0; i < elements.length; i++){
         //        console.log(elements[i])
@@ -120,6 +126,7 @@ updateHTML = function(){
             htmlString+=`</ul></li>`
         }
         htmlString += `</ul>
+<button class="remove")>Remove</button>
 </li>
 `
 
@@ -162,6 +169,7 @@ addElement = function(){
 
 
 removeElement = function(element){
+    console.log(element);
     for(let ruleLoop = element; ruleLoop<globalRules.length-1; ruleLoop++){
         globalRules[ruleLoop] = globalRules[ruleLoop+1];
         rule = globalRules[ruleLoop];
@@ -184,13 +192,14 @@ removeElement = function(element){
             condition = globalRules[ruleLoop][conditionLoop];
             for(let checkLoop = element; checkLoop<globalRules.length; checkLoop++){
                 if(condition.conditions[checkLoop+1] != undefined){
-                condition.conditions[checkLoop] = condition.conditions[checkLoop+1]
+                condition.conditions[checkLoop] = condition.conditions[checkLoop+1];
                 }
             }
-            delete condition.conditions[globalRules.length]
+            delete condition.conditions[globalRules.length];
         }
     }
 //    console.log(globalRules)
+    updateHTML();
 }
 
 
