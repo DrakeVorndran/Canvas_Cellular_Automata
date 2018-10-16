@@ -21,3 +21,4 @@
 ### possibly at some point
 * add directional checking
 * add presets
+* color picker

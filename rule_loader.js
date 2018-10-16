@@ -1,25 +1,25 @@
 var boardO = boardO || {};
 
-set_listeners = function(){
+setListeners = function(){
     let elements = document.getElementsByClassName("changes");
     for(let i = 0; i < elements.length; i++){
 //        console.log(elements[i])
         let current = elements[i]
         let changes = current.getElementsByClassName("change");
-        for(let change_loop = 0; change_loop < changes.length; change_loop++){
-            let change = changes[change_loop];
+        for(let changeLoop = 0; changeLoop < changes.length; changeLoop++){
+            let change = changes[changeLoop];
             let conditions = change.getElementsByClassName("condition");
-            for(let condition_loop = 0; condition_loop < conditions.length; condition_loop++){
-                let condition = conditions[condition_loop];
+            for(let conditionLoop = 0; conditionLoop < conditions.length; conditionLoop++){
+                let condition = conditions[conditionLoop];
                 let checks = condition.getElementsByClassName("checkbox");
-                for(let check_loop = 0; check_loop < checks.length; check_loop++){
-                    let check = checks[check_loop];
+                for(let checkLoop = 0; checkLoop < checks.length; checkLoop++){
+                    let check = checks[checkLoop];
                     check.onchange = function(e){
                         //                        console.log("hi")
-                        update_rules()
+                        updateRules()
                     }
                 }
-                //            globalRules[i][condition_loop].conditions
+                //            globalRules[i][conditionLoop].conditions
 
             }
         }
@@ -34,30 +34,30 @@ set_listeners = function(){
 //}
 
 
-update_rules = function(){
+updateRules = function(){
     let elements = document.getElementsByClassName("changes");
 //    console.log(elements);
     for(let i = 0; i < elements.length; i++){
         let current = elements[i]
         let changes = current.getElementsByClassName("change");
-        for(let change_loop = 0; change_loop < changes.length; change_loop++){
-            let change = changes[change_loop];
+        for(let changeLoop = 0; changeLoop < changes.length; changeLoop++){
+            let change = changes[changeLoop];
             let conditions = change.getElementsByClassName("condition");
-            for(let condition_loop = 0; condition_loop < conditions.length; condition_loop++){
-                let condition = conditions[condition_loop];
+            for(let conditionLoop = 0; conditionLoop < conditions.length; conditionLoop++){
+                let condition = conditions[conditionLoop];
                 let checks = condition.getElementsByClassName("checkbox");
-                let my_rule = []
-                for(let check_loop = 0; check_loop < checks.length; check_loop++){
-                    let check = checks[check_loop];
+                let myRule = []
+                for(let checkLoop = 0; checkLoop < checks.length; checkLoop++){
+                    let check = checks[checkLoop];
                     if(check.checked){
-                        my_rule.push(Number(check.value));
-//                        console.log(i, change_loop, check_loop, my_rule)
+                        myRule.push(Number(check.value));
+//                        console.log(i, changeLoop, checkLoop, myRule)
                     }
                 }
-                //                console.log(i,change_loop,condition_loop,my_rule);
-//                console.log(i,change_loop,condition_loop,my_rule)
-                globalRules[i][change_loop].conditions[condition_loop] = my_rule;
-                //            globalRules[i][condition_loop].conditions
+                //                console.log(i,changeLoop,conditionLoop,myRule);
+//                console.log(i,changeLoop,conditionLoop,myRule)
+                globalRules[i][changeLoop].conditions[conditionLoop] = myRule;
+                //            globalRules[i][conditionLoop].conditions
 
             }
         }
@@ -69,21 +69,21 @@ update_rules = function(){
 updateHTML = function(){
     htmlString = `<ul>
 `
-    for(let rule_loop = 0; rule_loop<globalRules.length; rule_loop++){
+    for(let ruleLoop = 0; ruleLoop<globalRules.length; ruleLoop++){
         htmlString += `<li>
 
 `
         htmlString += `
 <label>cell color: </label>
-<div class="rule-color" style="background: `+globalRules.colors[rule_loop]+`"></div>
+<div class="rule-color" style="background: `+globalRules.colors[ruleLoop]+`"></div>
 <ul class="changes">
 
 `
 
-        rule = globalRules[rule_loop];
+        rule = globalRules[ruleLoop];
         //        console.log(rule);
 
-        for(let change_loop = 0; change_loop<rule.length; change_loop++){
+        for(let changeLoop = 0; changeLoop<rule.length; changeLoop++){
             htmlString += `<li>
 <hr>
 </li>
@@ -92,16 +92,16 @@ updateHTML = function(){
 `
             htmlString += `<label class="changeto-label">change to: </label>
 `
-            htmlString += `<div class="changeto-color" style="background: `+globalRules.colors[change_loop]+`"></div>
+            htmlString += `<div class="changeto-color" style="background: `+globalRules.colors[changeLoop]+`"></div>
 <ul class="conditions">
 `
-            change = rule[change_loop];
+            change = rule[changeLoop];
             //            console.log(change)
             for(let x = 0; x < globalRules.length; x++){
                 htmlString+=`<li class="condition">
 <div class="conditions-color" style="background: `+globalRules.colors[x]+`"></div>
 <div class="selector">
-<p class="selector_text">0 1 2 3 4 5 6 7 8</p>`;
+<p class="selector-text">0 1 2 3 4 5 6 7 8</p>`;
                 for(let y = 0; y < 9; y++){
                     htmlString+=`<input type="checkbox" value="`+y+`" class="checkbox"`
                     if(x in change.conditions){
@@ -125,14 +125,14 @@ updateHTML = function(){
 
     }
     htmlString+=`<li>
-                    <button id="add-element" onclick="add_element()" >+</button>
+                    <button id="add-element" onclick="addElement()" >+</button>
                 </li>`
     htmlString+=`</ul>
 `             
 //    console.log(htmlString)
     creator = document.getElementById("rule-creator");
     creator.innerHTML = htmlString;
-    set_listeners();
+    setListeners();
 
 }
 
@@ -146,17 +146,22 @@ randomColor = function(){
     return str;
 }
 
-add_element = function(){
+addElement = function(){
     globalRules[globalRules.length] = []
     for(let i = 0; i<globalRules.length; i++){
-        globalRules[i].push({change_to: globalRules.length, conditions:{}});
-        globalRules[globalRules.length].push({change_to:i, conditions:{}});
+        globalRules[i].push({changeTo: globalRules.length, conditions:{}});
+        globalRules[globalRules.length].push({changeTo:i, conditions:{}});
     }
-    globalRules[globalRules.length].push({change_to:globalRules.length, conditions:{}});
+    globalRules[globalRules.length].push({changeTo:globalRules.length, conditions:{}});
     globalRules.length++;
     if(globalRules.length > globalRules.colors.length){
         globalRules.colors.push(randomColor());
     }
     
     updateHTML();
+}
+
+
+removeElement = function(){
+    
 }

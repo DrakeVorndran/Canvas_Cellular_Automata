@@ -20,13 +20,13 @@ boardO.init = function(height, width,size){
     this.width = width;
     //    console.log(width,t);
     this.size = size;
-    this.px_height =  this.height/this.size;
-    this.px_width = parseInt(this.width/this.size*(this.height/this.width));
-    //console.log(px_width)
-    this.grid_height = this.height/this.px_height;
-    this.grid_width = parseInt(this.width/this.px_width);
-//    document.getElementById("canvas").width=this.grid_width*this.px_width;
-    //console.log(grid_width);
+    this.pxHeight =  this.height/this.size;
+    this.pxWidth = parseInt(this.width/this.size*(this.height/this.width));
+    //console.log(pxWidth)
+    this.gridHeight = this.height/this.pxHeight;
+    this.gridWidth = parseInt(this.width/this.pxWidth);
+//    document.getElementById("canvas").width=this.gridWidth*this.pxWidth;
+    //console.log(gridWidth);
     this.time;
     //    this.ctx;
     this.grid;
@@ -44,7 +44,7 @@ boardO.reset = function(rules){
     this.running = true;
     this.time = 0;
     //    this.ctx = this.canvas.getContext("2d");
-    this.grid = new Array(this.grid_height);
+    this.grid = new Array(this.gridHeight);
 //    if(this.oldBoard.s)
     this.oldBoard = this.oldBoard || this.grid;
     this.states = rules.length;
@@ -55,9 +55,9 @@ boardO.reset = function(rules){
     this.rules = rules;
     this.colors = this.rules.colors;
 
-    //grid.fill(new Array(grid_width))
+    //grid.fill(new Array(gridWidth))
     for(let i = 0; i<this.grid.length; i++){
-        this.grid[i] = new Array(this.grid_width);
+        this.grid[i] = new Array(this.gridWidth);
         this.grid[i].fill(0);
         //    console.log(i);
     }
@@ -77,7 +77,7 @@ boardO.reset = function(rules){
 
 
 
-boardO.draw_checkerboard = function(){
+boardO.drawCheckerboard = function(){
     for(var y = 0; y<this.grid.length; y++){
         for(var x = 0; x < this.grid[y].length; x++){
             //            console.log(y+x)
@@ -102,7 +102,7 @@ boardO.step = function(){
                     if(check in rule.conditions){
                         condition = rule.conditions[check];
                         if(condition.includes(neighbors[check])){
-                            changes.push([x,y,rule.change_to]);
+                            changes.push([x,y,rule.changeTo]);
                         }
                     }
 
@@ -132,16 +132,16 @@ boardO.checker = function(x,y){
     let allchecked = [];
 
     if(this.wraping){ //finding all the neighbors
-        checkposX.push((x+1)%this.grid_width); 
-        checkposY.push((y+1)%this.grid_height);
+        checkposX.push((x+1)%this.gridWidth); 
+        checkposY.push((y+1)%this.gridHeight);
         if(x===0){
-            checkposX.push(this.grid_width-1);
+            checkposX.push(this.gridWidth-1);
         }
         else{
             checkposX.push(x-1);
         }
         if(y===0){
-            checkposY.push(this.grid_height-1);
+            checkposY.push(this.gridHeight-1);
         }
         else{
             checkposY.push(y-1);
@@ -155,10 +155,10 @@ boardO.checker = function(x,y){
         if(y!=0){
             checkposY.push(y-1);
         }
-        if(x!=this.grid_width-1){
+        if(x!=this.gridWidth-1){
             checkposX.push(x+1)
         }
-        if(y!=this.grid_height-1){
+        if(y!=this.gridHeight-1){
             checkposY.push(y+1)
         }
     }
@@ -216,8 +216,8 @@ boardO.play = function(){
 
 
 
-//draw_checkerboard()
-boardO.make_glider = function(){
+//drawCheckerboard()
+boardO.makeGlider = function(){
     this.grid[6][6] = 1;
     this.grid[7][6] = 1;
     this.grid[8][6] = 1;
@@ -226,7 +226,7 @@ boardO.make_glider = function(){
 }
 //grid[20][20] = 3;
 //console.log(grid);
-//make_glider();
+//makeGlider();
 //grid[5][5] = 1;
 
 
