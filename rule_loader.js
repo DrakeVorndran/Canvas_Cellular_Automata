@@ -3,7 +3,7 @@ var boardO = boardO || {};
 setListeners = function(){
     let elements = document.getElementsByClassName("changes");
     for(let i = 0; i < elements.length; i++){
-//        console.log(elements[i])
+        //        console.log(elements[i])
         let current = elements[i]
         let changes = current.getElementsByClassName("change");
         for(let changeLoop = 0; changeLoop < changes.length; changeLoop++){
@@ -36,7 +36,7 @@ setListeners = function(){
 
 updateRules = function(){
     let elements = document.getElementsByClassName("changes");
-//    console.log(elements);
+    //    console.log(elements);
     for(let i = 0; i < elements.length; i++){
         let current = elements[i]
         let changes = current.getElementsByClassName("change");
@@ -51,11 +51,11 @@ updateRules = function(){
                     let check = checks[checkLoop];
                     if(check.checked){
                         myRule.push(Number(check.value));
-//                        console.log(i, changeLoop, checkLoop, myRule)
+                        //                        console.log(i, changeLoop, checkLoop, myRule)
                     }
                 }
                 //                console.log(i,changeLoop,conditionLoop,myRule);
-//                console.log(i,changeLoop,conditionLoop,myRule)
+                //                console.log(i,changeLoop,conditionLoop,myRule)
                 globalRules[i][changeLoop].conditions[conditionLoop] = myRule;
                 //            globalRules[i][conditionLoop].conditions
 
@@ -108,7 +108,7 @@ updateHTML = function(){
                         if(change.conditions[x].includes(y)){
                             htmlString+=` checked `
                         }
-                        
+
                     }
                     htmlString+=`>`
 
@@ -125,11 +125,11 @@ updateHTML = function(){
 
     }
     htmlString+=`<li>
-                    <button id="add-element" onclick="addElement()" >+</button>
-                </li>`
+<button id="add-element" onclick="addElement()" >+</button>
+</li>`
     htmlString+=`</ul>
 `             
-//    console.log(htmlString)
+    //    console.log(htmlString)
     creator = document.getElementById("rule-creator");
     creator.innerHTML = htmlString;
     setListeners();
@@ -142,7 +142,6 @@ randomColor = function(){
     for(let x = 0; x < 6; x++){
         str+=l[parseInt(Math.random()*l.length)];
     }
-    console.log(str);
     return str;
 }
 
@@ -157,11 +156,18 @@ addElement = function(){
     if(globalRules.length > globalRules.colors.length){
         globalRules.colors.push(randomColor());
     }
-    
+
     updateHTML();
 }
 
 
-removeElement = function(){
-    
+removeElement = function(element){
+    for(let ruleLoop = element; ruleLoop<globalRules.length-1; ruleLoop++){
+        globalRules[ruleLoop] = globalRules[ruleLoop+1];
+    }
+    globalRules.length--;
+    globalRules.colors.splice(element,1);
+    delete globalRules[globalRules.length];
 }
+
+
