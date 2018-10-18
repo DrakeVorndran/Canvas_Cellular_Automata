@@ -46,7 +46,6 @@ run = function(){
         boardO.time = document.getElementById("delay-range").value;
         boardO.step();
     }
-    document.getElementById("delay-label").innerHTML = document.getElementById("delay-range").value+ " miliseconds"
     if(numRunning === 1){
         numRunning--;
         window.setTimeout(run, boardO.time);
@@ -81,7 +80,6 @@ reset = function(r){
 
 boardO.init(canvas.height,canvas.width,100);
 updateHTML()
-boardO.randomize();
 
 boardO.reset(globalRules);
 setListeners()

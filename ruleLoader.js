@@ -21,7 +21,10 @@ setListeners = function(){
                 for(let checkLoop = 0; checkLoop < checks.length; checkLoop++){
                     let check = checks[checkLoop];
                     check.onchange = function(e){
-                        //                        console.log("hi")
+//                        if(check.checked){
+//                            let others = current.getElementsByClassName(checkLoop);
+//                            console.log(others);
+//                        }
                         updateRules()
                     }
                 }
@@ -72,6 +75,35 @@ updateRules = function(){
 }
 
 
+randomizeRules = function(){
+    let elements = document.getElementsByClassName("changes");
+    //    console.log(elements);
+    for(let i = 0; i < elements.length; i++){
+        let current = elements[i]
+        let changes = current.getElementsByClassName("change");
+        for(let changeLoop = 0; changeLoop < changes.length; changeLoop++){
+            let change = changes[changeLoop];
+            let conditions = change.getElementsByClassName("condition");
+            for(let conditionLoop = 0; conditionLoop < conditions.length; conditionLoop++){
+                let condition = conditions[conditionLoop];
+                let checks = condition.getElementsByClassName("checkbox");
+                for(let checkLoop = 0; checkLoop < checks.length; checkLoop++){
+                    let check = checks[checkLoop];
+                    if(Math.random()<.2){
+                        check.checked = true;
+                    }
+                    else{
+                        check.checked = false;
+                    }
+                }
+
+            }
+        }
+
+    }
+    updateRules();
+}
+
 updateHTML = function(){
     htmlString = `<ul>
 `
@@ -109,7 +141,7 @@ updateHTML = function(){
 <div class="selector">
 <p class="selector-text">0 1 2 3 4 5 6 7 8</p>`;
                 for(let y = 0; y < 9; y++){
-                    htmlString+=`<input type="checkbox" value="`+y+`" class="checkbox"`
+                    htmlString+=`<input type="checkbox" value="`+y+`" class="checkbox `+y+`"`
                     if(x in change.conditions){
                         if(change.conditions[x].includes(y)){
                             htmlString+=` checked `
@@ -169,7 +201,6 @@ addElement = function(){
 
 
 removeElement = function(element){
-    console.log(element);
     for(let ruleLoop = element; ruleLoop<globalRules.length-1; ruleLoop++){
         globalRules[ruleLoop] = globalRules[ruleLoop+1];
         rule = globalRules[ruleLoop];

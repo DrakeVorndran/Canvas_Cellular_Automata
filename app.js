@@ -25,6 +25,8 @@ boardO.init = function(height, width,size){
     //console.log(pxWidth)
     this.gridHeight = this.height/this.pxHeight;
     this.gridWidth = parseInt(this.width/this.pxWidth);
+//    let game = document.getElementById("game");
+//    game.innerHTML = '<canvas id="canvas" width="'+this.gridWidth*this.pxWidth+'" height="'+this.gridHeight*this.pxHeight+'"></canvas>';
 //    document.getElementById("canvas").width=this.gridWidth*this.pxWidth;
     //console.log(gridWidth);
     this.time;
@@ -39,9 +41,9 @@ boardO.init = function(height, width,size){
 }
 
 boardO.reset = function(rules){
-    this.running = false;
+    this.pause();
     this.init(this.height,this.width,document.getElementById("reset-size").value);
-    this.running = true;
+    this.play();
     this.time = 0;
     //    this.ctx = this.canvas.getContext("2d");
     this.grid = new Array(this.gridHeight);
@@ -49,7 +51,7 @@ boardO.reset = function(rules){
     this.oldBoard = this.oldBoard || this.grid;
     this.states = rules.length;
     this.wraping = true;
-    this.running = true;
+    this.play();
     this.editible = false;
 
     this.rules = rules;
@@ -195,19 +197,23 @@ boardO.pause = function(){
     this.oldtime = this.time;
     this.time = 0;
     this.running = false;
+    stepButton.style.display = "inline";
     this.editible = true;
-    button = document.getElementById("pause-button");
-    button.setAttribute("onclick","boardO.play();");
-    button.innerHTML="Play";
+    pauseButton.onclick = (e) =>{
+        boardO.play();
+        pauseButton.innerHTML = "Pause";
+    }
 }
 
 boardO.play = function(){
     this.time=this.oldtime;
     this.running = true;
     this.editible = false;
-    button = document.getElementById("pause-button");
-    button.setAttribute("onclick","boardO.pause();");
-    button.innerHTML="Pause";
+    stepButton.style.display = "none";
+    pauseButton.onclick = (e) =>{
+        boardO.pause();
+        pauseButton.innerHTML = "Play";
+    }
 
     //    this.run();
 }
