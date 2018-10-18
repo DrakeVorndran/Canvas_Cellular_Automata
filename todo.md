@@ -12,9 +12,9 @@
 ---
 ### v1:
 
-* build a better interface for controlling canvas
+* ~build a better interface for controlling canvas~
 * ~make rules removable~
-* cleaner layout/ more css
+* ~cleaner layout/ more css~
 * add an intro page
 
 

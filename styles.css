@@ -5,6 +5,10 @@ html, body{
     margin: 0;
 }
 
+hr{
+    width:100%;
+}
+
 #container{
     width: calc(100%-40px;);
     display:flex;

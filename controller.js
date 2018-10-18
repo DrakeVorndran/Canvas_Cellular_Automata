@@ -41,6 +41,9 @@ canvas.addEventListener("mousedown",function(evt){
 run = function(){
     draw();
     numRunning++;
+    if(mouseOnRange){
+        delayLabel.innerHTML = String(delayRange.value)+" miliseconds";
+    }
     //    boardO.displayMouse();
     if(boardO.running){
         boardO.time = document.getElementById("delay-range").value;
