@@ -201,6 +201,8 @@ addElement = function(){
 
 
 removeElement = function(element){
+    boardO.pause();
+//    boardO.reset();
     for(let ruleLoop = element; ruleLoop<globalRules.length-1; ruleLoop++){
         globalRules[ruleLoop] = globalRules[ruleLoop+1];
         rule = globalRules[ruleLoop];
@@ -230,7 +232,9 @@ removeElement = function(element){
         }
     }
 //    console.log(globalRules)
+    boardO.reset(globalRules);
     updateHTML();
+//    boardO.play();
 }
 
 
