@@ -14,30 +14,38 @@
             </div>
 
             <div id="menu">
-                <div>
-                    <button id="restart-button">Restart Sim</button>
-                    <input id="reset-size" type="number" value="100">
-                </div>
+
 
                 <button id="pause-button">Pause</button>
                 <button id="step-button">Step</button>
 
                 <button id="randomize-board">Randomize the Board</button>
-                
-                <label>Delay:</label>
-                <input type="range" min=0 max="1000" value="0" id="delay-range">
-                <label id="delay-label"></label>
-                
-                
                 <button onclick="randomizeRules();">randomize the rules</button>
+
+                <div>
+                    <label>Delay</label>
+                    <input type="range" min=0 max="1000" value="0" id="delay-range">
+
+
+                    <label id="delay-label">0 miliseconds </label>
+                </div>
+                <button id="restart-button">Restart Sim</button>
+                <div>
+                    <label>Height </label>
+                    <input id="reset-size" type="number" value="100">
+                </div>
+
+
+
+
+            </div>
+
+            <div id="rule-creator">
+
 
             </div>
         </div>
 
-        <div id="rule-creator">
-            
-
-        </div>
         <script src="ButtonSettup.js"></script>
         <script src="app.js"></script>
         <script src="ruleLoader.js"></script>
