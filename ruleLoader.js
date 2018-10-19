@@ -21,10 +21,15 @@ setListeners = function(){
                 for(let checkLoop = 0; checkLoop < checks.length; checkLoop++){
                     let check = checks[checkLoop];
                     check.onchange = function(e){
-//                        if(check.checked){
-//                            let others = current.getElementsByClassName(checkLoop);
-//                            console.log(others);
-//                        }
+                        if(check.checked){
+                            let others = current.getElementsByClassName(String(checkLoop)+globalRules.colors[conditionLoop]);
+                            for(let otherLoop = 0; otherLoop<others.length; otherLoop++){
+                                o = others[otherLoop];
+                                if(o!=check){
+                                    o.checked = false;
+                                }
+                            }
+                        }
                         updateRules()
                     }
                 }
@@ -91,6 +96,13 @@ randomizeRules = function(){
                     let check = checks[checkLoop];
                     if(Math.random()<.2){
                         check.checked = true;
+                        let others = current.getElementsByClassName(String(checkLoop)+globalRules.colors[conditionLoop]);
+                        for(let otherLoop = 0; otherLoop<others.length; otherLoop++){
+                            o = others[otherLoop];
+                            if(o.checked && o!=check){
+                                check.checked = false;
+                            }
+                        }
                     }
                     else{
                         check.checked = false;
@@ -141,7 +153,7 @@ updateHTML = function(){
 <div class="selector">
 <p class="selector-text">0 1 2 3 4 5 6 7 8</p>`;
                 for(let y = 0; y < 9; y++){
-                    htmlString+=`<input type="checkbox" value="`+y+`" class="checkbox `+y+`"`
+                    htmlString+=`<input type="checkbox" value="`+y+`" class="checkbox `+y+globalRules.colors[x]+`"`
                     if(x in change.conditions){
                         if(change.conditions[x].includes(y)){
                             htmlString+=` checked `
@@ -202,7 +214,7 @@ addElement = function(){
 
 removeElement = function(element){
     boardO.pause();
-//    boardO.reset();
+    //    boardO.reset();
     for(let ruleLoop = element; ruleLoop<globalRules.length-1; ruleLoop++){
         globalRules[ruleLoop] = globalRules[ruleLoop+1];
         rule = globalRules[ruleLoop];
@@ -225,16 +237,16 @@ removeElement = function(element){
             condition = globalRules[ruleLoop][conditionLoop];
             for(let checkLoop = element; checkLoop<globalRules.length; checkLoop++){
                 if(condition.conditions[checkLoop+1] != undefined){
-                condition.conditions[checkLoop] = condition.conditions[checkLoop+1];
+                    condition.conditions[checkLoop] = condition.conditions[checkLoop+1];
                 }
             }
             delete condition.conditions[globalRules.length];
         }
     }
-//    console.log(globalRules)
+    //    console.log(globalRules)
     boardO.reset(globalRules);
     updateHTML();
-//    boardO.play();
+    //    boardO.play();
 }
 
 
