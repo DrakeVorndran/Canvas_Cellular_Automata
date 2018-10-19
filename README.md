@@ -35,5 +35,5 @@ My project allows you to edit the rules in a simple and easy to understand way.
 I used html5 canvas in this project to draw everything nessasary. I didn't use any libraries.
 
 
-## Future additions
+## Future Additions
 I do plan to keep working on this project after the intensive, and get people that are also intrested in cellular automation to work with me to add features, that being said I do have a [todo page](https://github.com/DrakeVorndran/Canvas_Cellular_Automata/blob/master/todo.md) with all of the current and future plans.
