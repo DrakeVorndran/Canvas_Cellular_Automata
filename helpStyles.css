@@ -1,0 +1,167 @@
+html, body{
+    padding:0;
+    background: #f4f4f4;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+#container{
+    width:50%;
+    margin: auto;
+}
+
+a{
+    color: black;
+}
+
+#rule-creator ul{
+    list-style: none;
+}
+
+#rule-creator{
+    width: 100%;
+    font-size: .8em;
+
+}
+
+#rule-creator > ul{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+#rule-creator .rule-color{
+    height: 100px;
+    width: 100px;
+    border-radius: 5px;
+    border: 1px black solid;
+}
+
+#rule-creator > ul > li{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border:1px solid grey;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.changes{
+    padding: 0px;
+}
+
+.changes > li {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.change .changeto-color{
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    border: 1px black solid;
+}
+
+.changes .changeto-label{
+    padding-right: 5px;
+}
+
+.conditions{
+    display: flex;
+}
+
+.conditions .conditions-color{
+    height: 25px;
+    width: 25px;
+    border: 1px black solid;
+    margin-bottom: 4px;
+
+}
+
+.conditions > li{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+}
+
+.conditions > li > input{
+    text-align: center;
+    border: none;
+    padding: 3px;
+    /*
+    margin-right: 15px;
+    margin-left: 3px;
+    */
+}
+
+#rule-creator > ul > li:last-child{
+    padding: 0px;
+}
+
+#add-element{
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    /*    text-align: center;*/
+    /*    justify-content: center;*/
+    font-size: 10em;
+    padding -4px;
+    background: #FFF;
+    border:none;
+    -webkit-transition: background .2s;
+    transition: background .2s;
+
+}
+
+#add-element:hover{
+    background: #DDD;
+    height: 100%;
+    width: 100%;
+}
+
+
+.selector-text{
+    margin:0;
+    margin-left: 5px;
+    letter-spacing: .1em;
+}
+
+.selector > input{
+    margin:1.7px;
+}
+
+#demo-text{
+    font-size: 2em;
+    width:100%;
+    text-align: center;
+}
+
+#go-back{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+
+}
+
+button{
+    padding:10px;
+    font-size: 1.3em;
+    background: white;
+    border: 1px black solid;
+    border-radius: 3px;
+    -webkit-transition: background .2s;
+    transition: background .2s;
+
+
+}
+
+button:hover {
+    background: #DDD;
+    cursor: pointer
+
+}

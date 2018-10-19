@@ -8,6 +8,9 @@ html, body{
 hr{
     width:100%;
 }
+#game{
+    margin: 20px;
+}
 
 #container{
     width: calc(100%-40px;);
