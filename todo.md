@@ -15,7 +15,7 @@
 * ~build a better interface for controlling canvas~
 * ~make rules removable~
 * ~cleaner layout/ more css~
-* add an intro page
+* ~add an intro page~
 
 
 ---
@@ -23,4 +23,4 @@
 * add directional checking
 * add presets
 * color picker
-* make neighbors unclickable if they have been used
+* ~make neighbors unclickable if they have been used~

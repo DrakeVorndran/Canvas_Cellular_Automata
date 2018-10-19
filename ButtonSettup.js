@@ -6,6 +6,7 @@ const pauseButton = document.getElementById("pause-button");
 const delayLabel = document.getElementById("delay-label");
 const delayRange = document.getElementById("delay-range");
 const stepButton = document.getElementById("step-button");
+const randomizeRulesButton = document.getElementById("randomize-rules");
 
 let mouseOnRange = false;
 
@@ -30,4 +31,8 @@ randomizeBoardButton.onclick = (e) => {
 
 stepButton.onclick = (e) => {
     boardO.step();
+}
+
+randomizeRulesButton.onclick = (e) => {
+    randomizeRules();
 }
