@@ -10,7 +10,7 @@ Every cell's state is detirmined by the states of the cells' around them. So in 
 ## My Project
 My project allows you to edit the rules in a simple and easy to understand way.
 
-### features
+### Features
 * Full control of the simulation
   * pause
   * play
