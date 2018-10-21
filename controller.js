@@ -6,6 +6,7 @@ let globalRules = {
     length: 2,
     colors:["white","black","blue","Red"]
 };
+rulePreset.selectedIndex = 1;
 getMousePos = function(canvas, evt){
     //massive help from https://www.html5canvastutorials.com/advanced/html5-canvas-mouse-coordinates/
     var rect = canvas.getBoundingClientRect();
