@@ -21,6 +21,7 @@ setListeners = function(){
                 for(let checkLoop = 0; checkLoop < checks.length; checkLoop++){
                     let check = checks[checkLoop];
                     check.onchange = function(e){
+                        rulePreset.selectedIndex;
                         if(check.checked){
                             let others = current.getElementsByClassName(String(checkLoop)+globalRules.colors[conditionLoop]);
                             for(let otherLoop = 0; otherLoop<others.length; otherLoop++){
