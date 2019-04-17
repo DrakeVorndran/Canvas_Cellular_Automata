@@ -65,18 +65,26 @@ class GameBoard {
 
     update(){
         let changes = []
+        // Loop through the 2d array to find all of the things that need to be changed and change them
         for(var y = 0; y<this.grid.length; y++){
             for(var x = 0; x < this.grid[y].length; x++){
-                let neighbors = checker(x,y);
+                // Finds all of the neighbors of the current cell
+                let neighbors = checker(x,y); 
                 //            if(this.grid[y][x]===1){
                 //                console.log(neighbors);
                 //            }
+                // Loops through all of the current rules for each of the cells
                 for(var i = 0; i<this.rules[this.grid[y][x]].length; i++){
+                    // What rule the color of the current cell follows
                     let rule = this.rules[this.grid[y][x]][i];
+                    // check is the color of each of the neighbors
                     for(var check in neighbors){
+                        // if the the current cell color will change based on the the neighbor color
                         if(check in rule.conditions){
                             condition = rule.conditions[check];
+                            // if the number of neighors of the check color is part of the condition to change
                             if(condition.includes(neighbors[check])){
+                                // add to a list of changes what cell needs to be changed, as well as what color it will change to
                                 changes.push([x,y,rule.change_to]);
                             }
                         }
@@ -87,7 +95,7 @@ class GameBoard {
 
         }
         for(var i in changes){
-            //        console.log(i);
+            // change all of the cells that needed to be changed
             this.grid[changes[i][1]][changes[i][0]] = changes[i][2];
         }
     }
@@ -96,15 +104,15 @@ class GameBoard {
 
     checker(x,y){
         let neighbors = {};
-
+        // init the neighbors dict
         for( var i = 0; i<this.states; i++) {
             neighbors[i] = 0;
         }
         let checkposX = [x];
         let checkposY = [y];
-        let allchecked = [];
 
-        if(this.wraping){ //finding all the neighbors
+        if(this.wraping){ // does the board wrap around to the other side or not
+            // add the x and y positions of the neighbors of the current cell to an array
             checkposX.push((x+1)%this.grid_width); 
             checkposY.push((y+1)%this.grid_height);
             if(x===0){
@@ -136,10 +144,12 @@ class GameBoard {
             }
         }
 
-        for(var i = 0; i < checkposY.length; i++){ //loop through both lists checking all the neighbors the cell has
-            //        console.log(checkposX,checkposY)
+        //loop through all of the neighbors that the cell has
+        for(var i = 0; i < checkposY.length; i++){ 
             for(var j = 0; j < checkposX.length; j++){
+                // if the cell is not checking itself
                 if((j!=0 || i!=0)){
+                    // add 1 to the color of the neighbor in the neighbors dict
                     neighbors[this.grid[checkposY[i]][checkposX[j]]]++;
                 }
             }
