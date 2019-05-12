@@ -12,6 +12,7 @@ for(let i in l){
 }
 
 updateHTML = () =>{
+    // explains each possible state of 2 states
     const strs = []
     for(let i in l){
         let count = tally(l[i]);
